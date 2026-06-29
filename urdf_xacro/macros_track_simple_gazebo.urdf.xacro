@@ -63,7 +63,7 @@
 
     <!-- main entry point: macro for making oval track by ContinuousTrackSimple plugin -->
 
-    <xacro:macro name="make_track_simple" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ mu:=^|0.5 min_depth:=^|0.01 implicit_spring_damper:=^|1 *material">
+    <xacro:macro name="make_track_simple" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ mu:=^|100.0 min_depth:=^|0.01 implicit_spring_damper:=^|1 *material">
         <xacro:populate_straight_segments name_prefix="${name}_straight_segment" x="${x - length / 2}" z="${z + radius}" dx="${length}" dz="${-2 * radius}" dpitch="${pi}" mass="${mass / 4}" size_x="${length}" size_y="${width}" size_z="${radius}" count="2">
             <xacro:insert_block name="material" />
         </xacro:populate_straight_segments>
@@ -73,7 +73,7 @@
         <xacro:make_track_simple_plugin name="${name}" />
     </xacro:macro>
 
-    <xacro:macro name="make_track_simple_wheels" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ mu:=^|0.5 min_depth:=^|0.01 implicit_spring_damper:=^|1 *material count:=^">
+    <xacro:macro name="make_track_simple_wheels" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ mu:=^|100.0 min_depth:=^|0.01 implicit_spring_damper:=^|1 *material count:=^">
         <xacro:populate_arc_segments name_prefix="${name}_wheel" x="${x + length / 2}"  z="${z + radius}" dx="${-length / (count - 1)}" mass="${mass / count}" length="${width}">
             <xacro:insert_block name="material" />
         </xacro:populate_arc_segments>
